@@ -14,7 +14,6 @@ import android.widget.Toast;
  * Created by aravind on 21/01/16.
  */
 public class Selected_item extends Activity {
-    TextView textView;
     String name;
     ListView listView;
     ArrayAdapter<String> data;
@@ -23,7 +22,6 @@ public class Selected_item extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.selected_item);
         listView=(ListView)findViewById(R.id.listView2);
-        //textView=(TextView)findViewById(R.id.item_name);
         Bundle bundle=this.getIntent().getExtras();
         String [] val=bundle.getStringArray("key");
         data=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,val);
@@ -32,15 +30,10 @@ public class Selected_item extends Activity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 name=((TextView)view).getText().toString();
-               // Toast.makeText(getApplicationContext(),name,Toast.LENGTH_SHORT).show();
                 intent=new Intent(getApplicationContext(),Event.class);
                 intent.putExtra("key-2",name);
                 startActivity(intent);
             }
         });
-        //textView.setText(val[0]);
-        //  Intent intent=getIntent();
-        //name=intent.getStringExtra("key");
-        //textView.setText(name);
     }
 }

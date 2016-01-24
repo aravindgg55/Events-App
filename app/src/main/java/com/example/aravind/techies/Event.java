@@ -131,8 +131,6 @@ public class Event extends Activity {
     public void upload(){
 
         Toast.makeText(Event.this, "Maximum Reached", Toast.LENGTH_SHORT).show();
-       //teamList.clear();
-        //teamCount=0;
 
     }
 
