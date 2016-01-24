@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="domains">
+        <item>Management</item>
+        <item>coding</item>
+        <item>General</item>
+        <item>Engineering</item>
+        <item>Online</item>
+        <item>Robotics</item>
+        <item>Quizzes</item>
+    </string-array>
+    <string-array name="management">
+        <item>Marketing Madness</item>
+        <item>Chaos Theory</item>
+        <item>Enigma</item>
+        <item>K! wallet</item>
+    </string-array>
+    <string-array name="general">
+        <item>Mock G20</item>
+        <item>Alcatraz</item>
+        <item>Gambling Match</item>
+        <item>K! spell bee</item>
+    </string-array>
+    <string-array name="engineering">
+        <item>Innovate</item>
+        <item>BIM</item>
+        <item>Circuit Craze</item>
+        <item>Contraptions</item>
+        <item>Fully Doped</item>
+        <item>Godspeed</item>
+        <item>How Stuffs Work</item>
+    </string-array>
+    <string-array name="online">
+        <item>Sherlock</item>
+        <item>Bank Robbery</item>
+        <item>Dalal Bull</item>
+        <item>OLPC</item>
+        <item>ROS</item>
+    </string-array>
+    <string-array name="coding">
+        <item>The imitation game</item>
+        <item>Heptathlon</item>
+        <item>Ninja coding</item>
+        <item>OSPC</item>
+        <item>Tame the code</item>
+    </string-array>
+    <string-array name="robotics">
+        <item>The gem quest</item>
+        <item>K!ardinal quest</item>
+        <item>Robo wars</item>
+        <item>Tanker bot</item>
+    </string-array>
+    <string-array name="quizzes">
+        <item>Scitech quiz</item>
+        <item>K! biz quiz</item>
+        <item>K! open quiz</item>
+        <item>K! general quiz></item>
+    </string-array>
+</resources>
