@@ -56,6 +56,13 @@
         <item>Robo wars</item>
         <item>Tanker bot</item>
     </string-array>
+    <string-array name="spinner_val">
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>2</item>
+        <item>1</item>
+    </string-array>
     <attr format="reference" name="drawerArrowStyle"/>
     <attr format="dimension" name="height"/>
     <attr format="boolean" name="isLightTheme"/>

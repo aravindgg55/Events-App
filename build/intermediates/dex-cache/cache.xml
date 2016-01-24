@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/aravind/AndroidStudioProjects/Techies/app/build/intermediates/exploded-aar/me.dm7.barcodescanner/zxing/1.8.3/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="1bfe1cf652c5fe0f666ea9c9d8a4fd2db1b40a11">
+        <dex dex="/Users/aravind/AndroidStudioProjects/Techies/app/build/intermediates/pre-dexed/debug/me.dm7.barcodescanner-zxing-1.8.3_0c2cfab51da9fe76b7c113299f6233e01b4a1241.jar" />
+    </item>
+    <item
+        jar="/Users/aravind/.gradle/caches/modules-2/files-2.1/com.google.zxing/core/3.2.1/2287494d4f5f9f3a9a2bb6980e3f32053721b315/core-3.2.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="2287494d4f5f9f3a9a2bb6980e3f32053721b315">
+        <dex dex="/Users/aravind/AndroidStudioProjects/Techies/app/build/intermediates/pre-dexed/debug/core-3.2.1_e030ebafcc72b9f0357d7e5e6ebb049f9efd5f55.jar" />
+    </item>
+    <item
+        jar="/Users/aravind/AndroidStudioProjects/Techies/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="/Users/aravind/AndroidStudioProjects/Techies/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.1_5f4a442785ec5e044ff55b9e520b46880bf6a3ce.jar" />
+    </item>
+    <item
+        jar="/Users/aravind/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="/Users/aravind/AndroidStudioProjects/Techies/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.1_c0801dd3bb34d6dd235b79e25d408831ef2bd134.jar" />
+    </item>
+    <item
+        jar="/Users/aravind/AndroidStudioProjects/Techies/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="/Users/aravind/AndroidStudioProjects/Techies/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.1.1_bd7174f01e5c6c735fa65a545e8ced8d7c0709c4.jar" />
+    </item>
+    <item
+        jar="/Users/aravind/AndroidStudioProjects/Techies/app/build/intermediates/exploded-aar/me.dm7.barcodescanner/core/1.8.3/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="2acb8f25e91dc79b3e9fe3e4fc059d491756efcd">
+        <dex dex="/Users/aravind/AndroidStudioProjects/Techies/app/build/intermediates/pre-dexed/debug/me.dm7.barcodescanner-core-1.8.3_5c13a04962665447d1bb5d11a797244cc5b0473a.jar" />
+    </item>
+    <item
+        jar="/Users/aravind/AndroidStudioProjects/Techies/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="/Users/aravind/AndroidStudioProjects/Techies/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.1.1_a9adb0a929bbd18249b04c069276b338a205849f.jar" />
+    </item>
+
+</items>

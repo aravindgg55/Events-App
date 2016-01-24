@@ -8,8 +8,11 @@ import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.transition.ChangeTransform;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,12 +21,14 @@ import java.util.ArrayList;
 public class Event extends Activity {
 
     public static final String TEAM_COUNT = "TEAM_COUNT";
-    public static final int MAX_UPLOAD_COUNT = 5;
+    public static final int MAX_UPLOAD_COUNT = 2;
     int teamCount =0;
 
     ArrayList<Team> teamList;
     Team team;
-
+    Spinner spinner;
+    ArrayAdapter<String> spinner_adapter;
+    String [] spinner_values;
     TextView textView;
     TextView textView_counts;
     Button button;
@@ -32,7 +37,7 @@ public class Event extends Activity {
     String event_name;
     int memberCount;
 
-    EditText editText;
+   // EditText editText;
     public static String pref_event="key";
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedPreferences;
@@ -41,8 +46,14 @@ public class Event extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.event);
-        sharedPreferences=getSharedPreferences(MyPREFERENCES,MODE_PRIVATE);
-        SharedPreferences.Editor editor=sharedPreferences.edit();
+        sharedPreferences=getSharedPreferences(MyPREFERENCES, MODE_PRIVATE);
+        final SharedPreferences.Editor editor=sharedPreferences.edit();
+
+        spinner_values=getResources().getStringArray(R.array.spinner_val);
+        spinner=(Spinner)findViewById(R.id.spinner);
+        spinner_adapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,spinner_values);
+        spinner_adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        spinner.setAdapter(spinner_adapter);
 
 
         upload = (Button) findViewById(R.id.button_upload);
@@ -57,22 +68,25 @@ public class Event extends Activity {
         textView_counts=(TextView)findViewById(R.id.codes_count);
         intent=getIntent();
         event_name=intent.getStringExtra("key-2");
-        editText  = (EditText) findViewById(R.id.editText);
+        //editText  = (EditText) findViewById(R.id.editText);
         textView.setText(event_name);
-        editor.putString(pref_event,event_name);
+        editor.putString(pref_event, event_name);
         button=(Button)findViewById(R.id.button_scan);
-        button.setOnClickListener(new View.OnClickListener() {
+       button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if(editText.getText().toString().matches("")){
-                    return;
-                }
+               // if(editText.getText().toString().matches("")){
+                 //   return;
+                //}
                 if( teamCount == MAX_UPLOAD_COUNT){
-                    Toast.makeText(Event.this,"Maximum lIMIT reached",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Event.this,"Maximum LIMIT reached",Toast.LENGTH_SHORT).show();
+                    // reinitialise teamcount and teamlist
+                    teamList.clear();
+                    teamCount=0;
                     return;
                 }
-                memberCount = Integer.parseInt(editText.getText().toString());
+                memberCount = Integer.parseInt(spinner.getSelectedItem().toString());
                 intent=new Intent(getApplicationContext(),Scanner.class);
                 intent.putExtra(TEAM_COUNT,memberCount);
                 startActivityForResult(intent,45);
@@ -117,9 +131,8 @@ public class Event extends Activity {
     public void upload(){
 
         Toast.makeText(Event.this, "Maximum Reached", Toast.LENGTH_SHORT).show();
-        //Call services and reinitialise teamlist and teamcount
-        teamList.clear();
-        teamCount=0;
+       //teamList.clear();
+        //teamCount=0;
 
     }
 

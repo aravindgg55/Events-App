@@ -43,12 +43,11 @@
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true" />
 
-    <EditText
-        android:layout_width="wrap_content"
+    <Spinner
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/editText"
-        android:layout_alignBottom="@+id/button_scan"
-        android:layout_toStartOf="@+id/button_scan" />
+        android:id="@+id/spinner"
+        android:spinnerMode="dropdown"
+        android:layout_alignTop="@+id/button_scan"
+        android:layout_toStartOf="@+id/codes_count" />
 </RelativeLayout>

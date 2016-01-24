@@ -16,6 +16,7 @@ int array management 0x7f0b0004
 int array online 0x7f0b0005
 int array quizzes 0x7f0b0006
 int array robotics 0x7f0b0007
+int array spinner_val 0x7f0b0008
 int attr actionBarDivider 0x7f010063
 int attr actionBarItemBackground 0x7f010064
 int attr actionBarPopupTheme 0x7f01005d
@@ -492,7 +493,6 @@ int id customPanel 0x7f0d0036
 int id decor_content_parent 0x7f0d003f
 int id default_activity_button 0x7f0d0027
 int id disableHome 0x7f0d000c
-int id editText 0x7f0d0054
 int id edit_query 0x7f0d0043
 int id end 0x7f0d0019
 int id end_padder 0x7f0d0064
@@ -542,6 +542,7 @@ int id showCustom 0x7f0d000f
 int id showHome 0x7f0d0010
 int id showTitle 0x7f0d0011
 int id spacer 0x7f0d002c
+int id spinner 0x7f0d0054
 int id split_action_bar 0x7f0d0007
 int id src_atop 0x7f0d0015
 int id src_in 0x7f0d0016

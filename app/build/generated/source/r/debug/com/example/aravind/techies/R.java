@@ -29,6 +29,7 @@ public final class R {
         public static final int online=0x7f0b0005;
         public static final int quizzes=0x7f0b0006;
         public static final int robotics=0x7f0b0007;
+        public static final int spinner_val=0x7f0b0008;
     }
     public static final class attr {
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
@@ -1648,7 +1649,6 @@ containing a value of this type.
         public static final int decor_content_parent=0x7f0d003f;
         public static final int default_activity_button=0x7f0d0027;
         public static final int disableHome=0x7f0d000c;
-        public static final int editText=0x7f0d0054;
         public static final int edit_query=0x7f0d0043;
         public static final int end=0x7f0d0019;
         public static final int end_padder=0x7f0d0064;
@@ -1698,6 +1698,7 @@ containing a value of this type.
         public static final int showHome=0x7f0d0010;
         public static final int showTitle=0x7f0d0011;
         public static final int spacer=0x7f0d002c;
+        public static final int spinner=0x7f0d0054;
         public static final int split_action_bar=0x7f0d0007;
         public static final int src_atop=0x7f0d0015;
         public static final int src_in=0x7f0d0016;
