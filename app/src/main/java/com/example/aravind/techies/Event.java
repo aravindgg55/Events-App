@@ -15,28 +15,29 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-/**
- * Created by aravind on 22/01/16.
- */
 public class Event extends Activity {
 
-
     public static final String TEAM_COUNT = "TEAM_COUNT";
+    public static final int MAX_UPLOAD_COUNT = 5;
+    int teamCount =0;
 
+    ArrayList<Team> teamList;
+    Team team;
 
     TextView textView;
     TextView textView_counts;
     Button button;
     Button upload;
     Intent intent;
-    Intent intent2;
-   String event_name;
-    int teamCount;
+    String event_name;
+    int memberCount;
 
     EditText editText;
     public static String pref_event="key";
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedPreferences;
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.event);
@@ -50,25 +51,15 @@ public class Event extends Activity {
             @Override
             public void onClick(View view) {
 
-
-
             }
         });
-
         textView=(TextView)findViewById(R.id.textView);
         textView_counts=(TextView)findViewById(R.id.codes_count);
         intent=getIntent();
         event_name=intent.getStringExtra("key-2");
-
         editText  = (EditText) findViewById(R.id.editText);
-
-        //pref_event=event_name;
-        //Toast.makeText(getApplicationContext(),event_name,Toast.LENGTH_SHORT).show();
         textView.setText(event_name);
         editor.putString(pref_event,event_name);
-      // intent2=getIntent();
-      //  count=intent.getStringExtra("Key-3");
-       // textView_counts.setText(count);
         button=(Button)findViewById(R.id.button_scan);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,13 +68,17 @@ public class Event extends Activity {
                 if(editText.getText().toString().matches("")){
                     return;
                 }
-                teamCount = Integer.parseInt(editText.getText().toString());
+                if( teamCount == MAX_UPLOAD_COUNT){
+                    Toast.makeText(Event.this,"Maximum lIMIT reached",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                memberCount = Integer.parseInt(editText.getText().toString());
                 intent=new Intent(getApplicationContext(),Scanner.class);
-                intent.putExtra(TEAM_COUNT,teamCount);
+                intent.putExtra(TEAM_COUNT,memberCount);
                 startActivityForResult(intent,45);
             }
         });
-
+        teamList = new ArrayList<>();
     }
 
     @Override
@@ -93,19 +88,39 @@ public class Event extends Activity {
 
 
             case 45:
-
-//                Toast.makeText(this,"a "+data.getStringExtra(Scanner.RESULT_CODES),Toast.LENGTH_SHORT).show();
-
                 ArrayList<CharSequence> collected_data = data.getCharSequenceArrayListExtra(Scanner.RESULT_CODES);
-
+                team = new Team();
+                team.participants = (ArrayList<String>) collected_data.clone();
                 String finalStr = "";
-                for(int i=0;i<teamCount;i++)
+                for(int i=0;i<memberCount;i++) {
                     finalStr = finalStr + collected_data.get(i) + "\n";
+                }
 
-                Toast.makeText(getApplicationContext(), finalStr, Toast.LENGTH_SHORT).show();
+                teamCount++;
+
+                Toast.makeText(getApplicationContext(),""+"Team "+teamCount+"\n"+finalStr, Toast.LENGTH_SHORT).show();
+
+
+                teamList.add(team);
+
+
+
+                if(teamCount == MAX_UPLOAD_COUNT){
+
+                    upload();
+                }
 
                 break;
         }
+    }
+
+    public void upload(){
+
+        Toast.makeText(Event.this, "Maximum Reached", Toast.LENGTH_SHORT).show();
+        //Call services and reinitialise teamlist and teamcount
+        teamList.clear();
+        teamCount=0;
+
     }
 
 }
