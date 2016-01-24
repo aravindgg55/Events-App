@@ -1,8 +1,10 @@
 package com.example.aravind.techies;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -22,6 +24,7 @@ public class Scanner extends Activity implements ZXingScannerView.ResultHandler{
     Intent intent;
     int count=0;
     String num;
+    AlertDialog alertDialog;
     ArrayList<CharSequence> collected_data;
     Button button;
     TextView textView;
@@ -36,7 +39,7 @@ public class Scanner extends Activity implements ZXingScannerView.ResultHandler{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         intent = getIntent();
-        count  = intent.getIntExtra(Event.TEAM_COUNT,0);
+        count  = intent.getIntExtra(Event.TEAM_COUNT, 0);
         setContentView(R.layout.scan);
         z=new ZXingScannerView(this);
         button=(Button)findViewById(R.id.b);
@@ -103,8 +106,30 @@ public class Scanner extends Activity implements ZXingScannerView.ResultHandler{
 
 
     }
+    @Override
+    public void onBackPressed(){
+        AlertDialog.Builder alertDialgBuilder=new AlertDialog.Builder(this);
+        alertDialgBuilder.setTitle("Do you want to Discard");
+        alertDialgBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+               Intent intent=new Intent(Scanner.this,Event.class);
+                startActivity(intent);
+                Toast.makeText(getApplicationContext(),"Aborted",Toast.LENGTH_SHORT).show();
 
+            }
+        })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        return;
+                    }
+                });
+        AlertDialog alertDialog=alertDialgBuilder.create();
+        alertDialog.show();
+      //  Toast.makeText(getApplicationContext(),"back pressed",Toast.LENGTH_SHORT).show();
 
+    }
 
     boolean checkKQrCode(String code){
 

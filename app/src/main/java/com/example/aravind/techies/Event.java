@@ -23,7 +23,6 @@ public class Event extends Activity {
     public static final String TEAM_COUNT = "TEAM_COUNT";
     public static final int MAX_UPLOAD_COUNT = 2;
     int teamCount =0;
-
     ArrayList<Team> teamList;
     Team team;
     Spinner spinner;
@@ -35,9 +34,8 @@ public class Event extends Activity {
     Button upload;
     Intent intent;
     String event_name;
+    String restored_event_name;
     int memberCount;
-
-   // EditText editText;
     public static String pref_event="key";
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedPreferences;
@@ -55,7 +53,7 @@ public class Event extends Activity {
         spinner_adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinner.setAdapter(spinner_adapter);
 
-
+        teamList = new ArrayList<>();
         upload = (Button) findViewById(R.id.button_upload);
 
         upload.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +66,14 @@ public class Event extends Activity {
         textView_counts=(TextView)findViewById(R.id.codes_count);
         intent=getIntent();
         event_name=intent.getStringExtra("key-2");
-        //editText  = (EditText) findViewById(R.id.editText);
+
+        /*editor.putString("event_name",event_name);
+        editor.apply();
+        restored_event_name=sharedPreferences.getString("event_name",null);
+        if(restored_event_name!=null){
+            event_name=sharedPreferences.getString("event_name","no name");
+            textView.setText(event_name);
+        }*/
         textView.setText(event_name);
         editor.putString(pref_event, event_name);
         button=(Button)findViewById(R.id.button_scan);
@@ -76,9 +81,6 @@ public class Event extends Activity {
             @Override
             public void onClick(View view) {
 
-               // if(editText.getText().toString().matches("")){
-                 //   return;
-                //}
                 if( teamCount == MAX_UPLOAD_COUNT){
                     Toast.makeText(Event.this,"Maximum LIMIT reached",Toast.LENGTH_SHORT).show();
                     // reinitialise teamcount and teamlist
@@ -92,14 +94,12 @@ public class Event extends Activity {
                 startActivityForResult(intent,45);
             }
         });
-        teamList = new ArrayList<>();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         switch(requestCode){
-
 
             case 45:
                 ArrayList<CharSequence> collected_data = data.getCharSequenceArrayListExtra(Scanner.RESULT_CODES);
@@ -109,21 +109,13 @@ public class Event extends Activity {
                 for(int i=0;i<memberCount;i++) {
                     finalStr = finalStr + collected_data.get(i) + "\n";
                 }
-
                 teamCount++;
-
                 Toast.makeText(getApplicationContext(),""+"Team "+teamCount+"\n"+finalStr, Toast.LENGTH_SHORT).show();
-
-
                 teamList.add(team);
-
-
-
                 if(teamCount == MAX_UPLOAD_COUNT){
 
                     upload();
                 }
-
                 break;
         }
     }
