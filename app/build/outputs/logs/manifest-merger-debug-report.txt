@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/aravind/AndroidStudioProjects/Techies/app/src/main/AndroidManifest.xml:2:1-30:12
+ADDED from /Users/aravind/AndroidStudioProjects/Techies/app/src/main/AndroidManifest.xml:2:1-32:12
 	package
 		ADDED from /Users/aravind/AndroidStudioProjects/Techies/app/src/main/AndroidManifest.xml:3:5-42
 		INJECTED from /Users/aravind/AndroidStudioProjects/Techies/app/src/main/AndroidManifest.xml
@@ -18,7 +18,7 @@ ADDED from /Users/aravind/AndroidStudioProjects/Techies/app/src/main/AndroidMani
 	android:name
 		ADDED from /Users/aravind/AndroidStudioProjects/Techies/app/src/main/AndroidManifest.xml:5:22-62
 application
-ADDED from /Users/aravind/AndroidStudioProjects/Techies/app/src/main/AndroidManifest.xml:7:5-28:19
+ADDED from /Users/aravind/AndroidStudioProjects/Techies/app/src/main/AndroidManifest.xml:7:5-30:19
 MERGED from [com.android.support:appcompat-v7:23.1.1] /Users/aravind/AndroidStudioProjects/Techies/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:23.1.1] /Users/aravind/AndroidStudioProjects/Techies/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml:22:5-20
 MERGED from [me.dm7.barcodescanner:zxing:1.8.3] /Users/aravind/AndroidStudioProjects/Techies/app/build/intermediates/exploded-aar/me.dm7.barcodescanner/zxing/1.8.3/AndroidManifest.xml:11:5-20
@@ -53,19 +53,23 @@ ADDED from /Users/aravind/AndroidStudioProjects/Techies/app/src/main/AndroidMani
 	android:name
 		ADDED from /Users/aravind/AndroidStudioProjects/Techies/app/src/main/AndroidManifest.xml:20:19-48
 activity#com.example.aravind.techies.Event
-ADDED from /Users/aravind/AndroidStudioProjects/Techies/app/src/main/AndroidManifest.xml:21:9-43
+ADDED from /Users/aravind/AndroidStudioProjects/Techies/app/src/main/AndroidManifest.xml:21:9-22:39
+	android:noHistory
+		ADDED from /Users/aravind/AndroidStudioProjects/Techies/app/src/main/AndroidManifest.xml:22:13-37
 	android:name
 		ADDED from /Users/aravind/AndroidStudioProjects/Techies/app/src/main/AndroidManifest.xml:21:19-40
 activity#com.example.aravind.techies.Scanner
-ADDED from /Users/aravind/AndroidStudioProjects/Techies/app/src/main/AndroidManifest.xml:22:9-45
+ADDED from /Users/aravind/AndroidStudioProjects/Techies/app/src/main/AndroidManifest.xml:23:9-24:39
+	android:noHistory
+		ADDED from /Users/aravind/AndroidStudioProjects/Techies/app/src/main/AndroidManifest.xml:24:13-37
 	android:name
-		ADDED from /Users/aravind/AndroidStudioProjects/Techies/app/src/main/AndroidManifest.xml:22:19-42
+		ADDED from /Users/aravind/AndroidStudioProjects/Techies/app/src/main/AndroidManifest.xml:23:19-42
 service#com.example.aravind.techies.UploadService
-ADDED from /Users/aravind/AndroidStudioProjects/Techies/app/src/main/AndroidManifest.xml:24:9-26:48
+ADDED from /Users/aravind/AndroidStudioProjects/Techies/app/src/main/AndroidManifest.xml:26:9-28:48
 	android:exported
-		ADDED from /Users/aravind/AndroidStudioProjects/Techies/app/src/main/AndroidManifest.xml:26:13-37
+		ADDED from /Users/aravind/AndroidStudioProjects/Techies/app/src/main/AndroidManifest.xml:28:13-37
 	android:name
-		ADDED from /Users/aravind/AndroidStudioProjects/Techies/app/src/main/AndroidManifest.xml:25:13-42
+		ADDED from /Users/aravind/AndroidStudioProjects/Techies/app/src/main/AndroidManifest.xml:27:13-42
 uses-sdk
 INJECTED from /Users/aravind/AndroidStudioProjects/Techies/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:appcompat-v7:23.1.1] /Users/aravind/AndroidStudioProjects/Techies/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/AndroidManifest.xml:20:5-43

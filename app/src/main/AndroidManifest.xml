@@ -18,8 +18,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".Selected_item" />
-        <activity android:name=".Event" />
-        <activity android:name=".Scanner" />
+        <activity android:name=".Event"
+            android:noHistory="true"/>
+        <activity android:name=".Scanner"
+            android:noHistory="true"/>
 
         <service
             android:name=".UploadService"
