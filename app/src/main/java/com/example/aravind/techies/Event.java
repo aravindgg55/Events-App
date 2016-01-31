@@ -62,7 +62,7 @@ public class Event extends Activity {
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                    // Add upload code here.
             }
         });
         textView=(TextView)findViewById(R.id.textView);
