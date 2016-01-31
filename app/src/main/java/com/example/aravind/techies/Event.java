@@ -70,13 +70,7 @@ public class Event extends Activity {
         intent=getIntent();
         event_name=intent.getStringExtra("key-2");
 
-        /*editor.putString("event_name",event_name);
-        editor.apply();
-        restored_event_name=sharedPreferences.getString("event_name",null);
-        if(restored_event_name!=null){
-            event_name=sharedPreferences.getString("event_name","no name");
-            textView.setText(event_name);
-        }*/
+
         textView.setText(event_name);
         editor.putString(pref_event, event_name);
         button=(Button)findViewById(R.id.button_scan);
