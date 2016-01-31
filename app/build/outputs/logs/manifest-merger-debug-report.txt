@@ -53,9 +53,7 @@ ADDED from /Users/aravind/AndroidStudioProjects/Techies/app/src/main/AndroidMani
 	android:name
 		ADDED from /Users/aravind/AndroidStudioProjects/Techies/app/src/main/AndroidManifest.xml:20:19-48
 activity#com.example.aravind.techies.Event
-ADDED from /Users/aravind/AndroidStudioProjects/Techies/app/src/main/AndroidManifest.xml:21:9-22:39
-	android:noHistory
-		ADDED from /Users/aravind/AndroidStudioProjects/Techies/app/src/main/AndroidManifest.xml:22:13-37
+ADDED from /Users/aravind/AndroidStudioProjects/Techies/app/src/main/AndroidManifest.xml:21:9-22:15
 	android:name
 		ADDED from /Users/aravind/AndroidStudioProjects/Techies/app/src/main/AndroidManifest.xml:21:19-40
 activity#com.example.aravind.techies.Scanner

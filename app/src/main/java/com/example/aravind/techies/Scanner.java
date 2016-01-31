@@ -31,6 +31,10 @@ public class Scanner extends Activity implements ZXingScannerView.ResultHandler{
     TextView textView_counter;
     LinearLayout linearLayout;
      Integer numbers=0;
+
+
+    public static final int codeLen = 8;
+
     private ZXingScannerView z;
 
     public static final String RESULT_CODES = "RESULT_CODES";
@@ -79,28 +83,34 @@ public class Scanner extends Activity implements ZXingScannerView.ResultHandler{
     public void handleResult(Result result) {
         String info=result.getText().toString();
 
-        if(!checkKQrCode(info))
-            return;
+        if(checkKQrCode(info)) {
 
-        if(!collected_data.contains(info)) {
-            collected_data.add(info);
-            numbers++;
-            num=numbers.toString();
-            textView_counter.setText(num);
-            Toast.makeText(getApplicationContext(),"added",Toast.LENGTH_SHORT).show();
-            if(numbers!=count)
+            if (!collected_data.contains(info)) {
+                collected_data.add(info);
+                numbers++;
+                num = numbers.toString();
+                textView_counter.setText(num);
+                Toast.makeText(getApplicationContext(), "added", Toast.LENGTH_SHORT).show();
+                if (numbers != count)
+                    z.startCamera();
+                else {
+                    Intent resultIntent = new Intent();
+                    resultIntent.putCharSequenceArrayListExtra(RESULT_CODES, collected_data);
+                    setResult(45, resultIntent);
+                    finish();
+
+                }
+            } else {
                 z.startCamera();
-            else{
-                Intent resultIntent = new Intent();
-                resultIntent.putCharSequenceArrayListExtra(RESULT_CODES,collected_data);
-                setResult(45, resultIntent);
-                finish();
-
+                Toast.makeText(getApplicationContext(), "Duplicate detected", Toast.LENGTH_SHORT).show();
             }
+
         }
-        else {
+
+
+        else{
+            Toast.makeText(this,"Invalid QR Code: "+info,Toast.LENGTH_SHORT).show();
             z.startCamera();
-            Toast.makeText(getApplicationContext(),"Duplicate detected",Toast.LENGTH_SHORT).show();
         }
 
 
@@ -132,6 +142,22 @@ public class Scanner extends Activity implements ZXingScannerView.ResultHandler{
     }
 
     boolean checkKQrCode(String code){
+
+        if(code.length() != codeLen)
+            return false;
+
+
+        String prefix = "KQ16";
+
+        if(!code.substring(0,4).equals(prefix))
+            return false;
+
+        try{
+            Integer.parseInt(code.substring(4));
+        }
+        catch(Exception e){
+            return false;
+        }
 
         return true;
     }
