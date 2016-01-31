@@ -50,4 +50,14 @@
         android:spinnerMode="dropdown"
         android:layout_alignTop="@+id/button_scan"
         android:layout_toStartOf="@+id/codes_count" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="store to file"
+        android:id="@+id/button_store"
+        android:layout_above="@+id/button_scan"
+        android:layout_alignEnd="@+id/button_scan"
+        android:nestedScrollingEnabled="false"
+        android:onClick="storeToFile" />
 </RelativeLayout>

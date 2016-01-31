@@ -34,6 +34,8 @@ public class Event extends Activity {
     Button upload;
     Intent intent;
     String event_name;
+
+    Button fileButton;
     String restored_event_name;
     int memberCount;
     public static String pref_event="key";
@@ -46,6 +48,7 @@ public class Event extends Activity {
         setContentView(R.layout.event);
         sharedPreferences=getSharedPreferences(MyPREFERENCES, MODE_PRIVATE);
         final SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.commit();
 
         spinner_values=getResources().getStringArray(R.array.spinner_val);
         spinner=(Spinner)findViewById(R.id.spinner);
@@ -94,6 +97,10 @@ public class Event extends Activity {
                 startActivityForResult(intent,45);
             }
         });
+
+
+        fileButton =  (Button) findViewById(R.id.button_scan);
+
     }
 
     @Override
@@ -123,6 +130,13 @@ public class Event extends Activity {
     public void upload(){
 
         Toast.makeText(Event.this, "Maximum Reached", Toast.LENGTH_SHORT).show();
+
+    }
+
+
+    public void storeToFile(View view){
+
+        Toast.makeText(this,"Done",Toast.LENGTH_SHORT).show();
 
     }
 
