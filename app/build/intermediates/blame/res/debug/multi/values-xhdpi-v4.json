@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "/Users/aravind/AndroidStudioProjects/Techies/app/build/intermediates/res/merged/debug/values-xhdpi-v4/values-xhdpi-v4.xml",
+        "outputFile": "C:\\Users\\AkilAdeshwar\\AndroidStudioProjects\\Events-App\\app\\build\\intermediates\\res\\merged\\debug\\values-xhdpi-v4\\values-xhdpi-v4.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,50 @@
                     "endOffset": 108
                 },
                 "from": {
-                    "file": "/Users/aravind/AndroidStudioProjects/Techies/app/build/intermediates/exploded-aar/me.dm7.barcodescanner/core/1.8.3/res/values-xhdpi-v4/values.xml",
+                    "file": "C:\\Users\\AkilAdeshwar\\AndroidStudioProjects\\Events-App\\app\\build\\intermediates\\exploded-aar\\me.dm7.barcodescanner\\core\\1.8.4\\res\\values-xhdpi-v4\\values-xhdpi-v4.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 57,
+                        "endOffset": 108
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 113,
+                    "endColumn": 55,
+                    "endOffset": 164
+                },
+                "from": {
+                    "file": "C:\\Users\\AkilAdeshwar\\AndroidStudioProjects\\Events-App\\app\\build\\intermediates\\exploded-aar\\me.dm7.barcodescanner\\core\\1.8.4\\res\\values-xhdpi-v4\\values-xhdpi-v4.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 113,
+                        "endColumn": 55,
+                        "endOffset": 164
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "C:\\Users\\aravind\\AndroidStudioProjects\\Techies\\app\\build\\intermediates\\res\\merged\\debug\\values-xhdpi-v4\\values-xhdpi-v4.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 57,
+                    "endOffset": 108
+                },
+                "from": {
+                    "file": "C:\\Users\\aravind\\AndroidStudioProjects\\Techies\\app\\build\\intermediates\\exploded-aar\\me.dm7.barcodescanner\\core\\1.8.3\\res\\values-xhdpi-v4\\values.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -30,7 +73,7 @@
                     "endOffset": 164
                 },
                 "from": {
-                    "file": "/Users/aravind/AndroidStudioProjects/Techies/app/build/intermediates/exploded-aar/me.dm7.barcodescanner/core/1.8.3/res/values-xhdpi-v4/values.xml",
+                    "file": "C:\\Users\\aravind\\AndroidStudioProjects\\Techies\\app\\build\\intermediates\\exploded-aar\\me.dm7.barcodescanner\\core\\1.8.3\\res\\values-xhdpi-v4\\values.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,

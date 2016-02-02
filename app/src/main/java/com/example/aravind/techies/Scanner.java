@@ -92,16 +92,15 @@ public class Scanner extends Activity implements ZXingScannerView.ResultHandler{
                 textView_counter.setText(num);
                 Toast.makeText(getApplicationContext(), "added", Toast.LENGTH_SHORT).show();
                 if (numbers != count)
-                    z.startCamera();
+                    z.resumeCameraPreview(this);
                 else {
                     Intent resultIntent = new Intent();
                     resultIntent.putCharSequenceArrayListExtra(RESULT_CODES, collected_data);
                     setResult(45, resultIntent);
                     finish();
-
                 }
             } else {
-                z.startCamera();
+                z.resumeCameraPreview(this);
                 Toast.makeText(getApplicationContext(), "Duplicate detected", Toast.LENGTH_SHORT).show();
             }
 
@@ -110,12 +109,10 @@ public class Scanner extends Activity implements ZXingScannerView.ResultHandler{
 
         else{
             Toast.makeText(this,"Invalid QR Code: "+info,Toast.LENGTH_SHORT).show();
-            z.startCamera();
+            z.resumeCameraPreview(this);
         }
-
-
-
     }
+
     @Override
     public void onBackPressed(){
         AlertDialog.Builder alertDialgBuilder=new AlertDialog.Builder(this);
@@ -123,10 +120,10 @@ public class Scanner extends Activity implements ZXingScannerView.ResultHandler{
         alertDialgBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-               Intent intent=new Intent(Scanner.this,Event.class);
-                startActivity(intent);
+                Intent intent=new Intent();
                 Toast.makeText(getApplicationContext(),"Aborted",Toast.LENGTH_SHORT).show();
-
+                setResult(90,intent);
+                finish();
             }
         })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {

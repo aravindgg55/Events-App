@@ -1,6 +1,10 @@
 [
     {
-        "merged": "/Users/aravind/AndroidStudioProjects/Techies/app/build/intermediates/res/merged/debug/mipmap-xxhdpi-v4/ic_launcher.png",
-        "source": "/Users/aravind/AndroidStudioProjects/Techies/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
+        "merged": "C:\\Users\\AkilAdeshwar\\AndroidStudioProjects\\Events-App\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\AkilAdeshwar\\AndroidStudioProjects\\Events-App\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\aravind\\AndroidStudioProjects\\Techies\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\aravind\\AndroidStudioProjects\\Techies\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
     }
 ]
