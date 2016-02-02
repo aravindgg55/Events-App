@@ -25,7 +25,9 @@
         </activity>
         <activity android:name="com.example.aravind.techies.Selected_item" />
         <activity android:name="com.example.aravind.techies.Event" />
-        <activity android:name="com.example.aravind.techies.Scanner" />
+        <activity
+            android:name="com.example.aravind.techies.Scanner"
+            android:noHistory="true" />
 
         <service
             android:name="com.example.aravind.techies.UploadService"

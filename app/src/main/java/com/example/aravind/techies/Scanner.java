@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -46,33 +45,19 @@ public class Scanner extends Activity implements ZXingScannerView.ResultHandler{
         count  = intent.getIntExtra(Event.TEAM_COUNT, 0);
         setContentView(R.layout.scan);
         z=new ZXingScannerView(this);
+        linearLayout=(LinearLayout)findViewById(R.id.lv);
+        linearLayout.addView(z);
         button=(Button)findViewById(R.id.b);
         collected_data=new ArrayList<>();
-        linearLayout=(LinearLayout)findViewById(R.id.lv);
         textView=(TextView)findViewById(R.id.t);
         textView_counter=(TextView)findViewById(R.id.counter);
-        linearLayout.addView(z);
-        z.startCamera();
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int j;
-                if(collected_data.size()<1)
-                {
-                    Toast.makeText(getApplicationContext(),"No inputs",Toast.LENGTH_SHORT).show();
-                }
-                for (j = 0; j < collected_data.size(); j++) {
-
-                }
-
-            }
-        });
     }
-    public void onPause()
-    {
+
+    public void onPause() {
         super.onPause();
         z.stopCamera();
     }
+
     public void onResume()
     {
         super.onResume();
@@ -82,6 +67,7 @@ public class Scanner extends Activity implements ZXingScannerView.ResultHandler{
     @Override
     public void handleResult(Result result) {
         String info=result.getText().toString();
+        Toast.makeText(this,"Scanned: "+info,Toast.LENGTH_SHORT).show();
 
         if(checkKQrCode(info)) {
 
@@ -94,7 +80,6 @@ public class Scanner extends Activity implements ZXingScannerView.ResultHandler{
                 if (numbers != count)
                     z.resumeCameraPreview(this);
                 else {
-                    z.stopCamera();
                     Intent resultIntent = new Intent();
                     resultIntent.putCharSequenceArrayListExtra(RESULT_CODES, collected_data);
                     setResult(45, resultIntent);

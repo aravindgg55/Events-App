@@ -70,7 +70,7 @@ public class Event extends Activity {
         textView.setText(event_name);
         editor.putString(pref_event, event_name);
         button=(Button)findViewById(R.id.button_scan);
-       button.setOnClickListener(new View.OnClickListener() {
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
