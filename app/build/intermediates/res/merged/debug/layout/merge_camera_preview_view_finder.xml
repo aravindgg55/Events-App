@@ -9,4 +9,3 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
 </merge>
-<!-- From: file:/Users/dushyanth/Development/android_work/barcodescanner/core/src/main/res/layout/merge_camera_preview_view_finder.xml -->

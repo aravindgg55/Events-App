@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -30,7 +29,7 @@ public class Scanner extends Activity implements ZXingScannerView.ResultHandler{
     TextView textView;
     TextView textView_counter;
     LinearLayout linearLayout;
-     Integer numbers=0;
+    Integer numbers=0;
 
 
     public static final int codeLen = 8;
@@ -46,33 +45,19 @@ public class Scanner extends Activity implements ZXingScannerView.ResultHandler{
         count  = intent.getIntExtra(Event.TEAM_COUNT, 0);
         setContentView(R.layout.scan);
         z=new ZXingScannerView(this);
+        linearLayout=(LinearLayout)findViewById(R.id.lv);
+        linearLayout.addView(z);
         button=(Button)findViewById(R.id.b);
         collected_data=new ArrayList<>();
-        linearLayout=(LinearLayout)findViewById(R.id.lv);
         textView=(TextView)findViewById(R.id.t);
         textView_counter=(TextView)findViewById(R.id.counter);
-        linearLayout.addView(z);
-        z.startCamera();
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int j;
-                if(collected_data.size()<1)
-                {
-                    Toast.makeText(getApplicationContext(),"No inputs",Toast.LENGTH_SHORT).show();
-                }
-                for (j = 0; j < collected_data.size(); j++) {
-
-                }
-
-            }
-        });
     }
-    public void onPause()
-    {
+
+    public void onPause() {
         super.onPause();
         z.stopCamera();
     }
+
     public void onResume()
     {
         super.onResume();
@@ -82,6 +67,7 @@ public class Scanner extends Activity implements ZXingScannerView.ResultHandler{
     @Override
     public void handleResult(Result result) {
         String info=result.getText().toString();
+        Toast.makeText(this,"Scanned: "+info,Toast.LENGTH_SHORT).show();
 
         if(checkKQrCode(info)) {
 
@@ -92,16 +78,15 @@ public class Scanner extends Activity implements ZXingScannerView.ResultHandler{
                 textView_counter.setText(num);
                 Toast.makeText(getApplicationContext(), "added", Toast.LENGTH_SHORT).show();
                 if (numbers != count)
-                    z.startCamera();
+                    z.resumeCameraPreview(this);
                 else {
                     Intent resultIntent = new Intent();
                     resultIntent.putCharSequenceArrayListExtra(RESULT_CODES, collected_data);
                     setResult(45, resultIntent);
                     finish();
-
                 }
             } else {
-                z.startCamera();
+                z.resumeCameraPreview(this);
                 Toast.makeText(getApplicationContext(), "Duplicate detected", Toast.LENGTH_SHORT).show();
             }
 
@@ -110,12 +95,10 @@ public class Scanner extends Activity implements ZXingScannerView.ResultHandler{
 
         else{
             Toast.makeText(this,"Invalid QR Code: "+info,Toast.LENGTH_SHORT).show();
-            z.startCamera();
+            z.resumeCameraPreview(this);
         }
-
-
-
     }
+
     @Override
     public void onBackPressed(){
         AlertDialog.Builder alertDialgBuilder=new AlertDialog.Builder(this);
@@ -123,10 +106,9 @@ public class Scanner extends Activity implements ZXingScannerView.ResultHandler{
         alertDialgBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-               Intent intent=new Intent(Scanner.this,Event.class);
-                startActivity(intent);
-                Toast.makeText(getApplicationContext(),"Aborted",Toast.LENGTH_SHORT).show();
-
+                Intent intent=new Intent();
+                setResult(45,intent);
+                finish();
             }
         })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {

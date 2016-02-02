@@ -4,14 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.Preference;
-import android.preference.PreferenceManager;
-import android.transition.ChangeTransform;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +27,7 @@ public class Event extends Activity {
     TextView textView_counts;
     Button button;
     Button upload;
+
     Intent intent;
     String event_name;
 
@@ -74,7 +70,7 @@ public class Event extends Activity {
         textView.setText(event_name);
         editor.putString(pref_event, event_name);
         button=(Button)findViewById(R.id.button_scan);
-       button.setOnClickListener(new View.OnClickListener() {
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -104,6 +100,10 @@ public class Event extends Activity {
 
             case 45:
                 ArrayList<CharSequence> collected_data = data.getCharSequenceArrayListExtra(Scanner.RESULT_CODES);
+                if(collected_data==null) {
+                    Toast.makeText(this,"Aborted",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 team = new Team();
                 team.participants = (ArrayList<String>) collected_data.clone();
                 String finalStr = "";
@@ -114,10 +114,10 @@ public class Event extends Activity {
                 Toast.makeText(getApplicationContext(),""+"Team "+teamCount+"\n"+finalStr, Toast.LENGTH_SHORT).show();
                 teamList.add(team);
                 if(teamCount == MAX_UPLOAD_COUNT){
-
                     upload();
                 }
                 break;
+
         }
     }
 
