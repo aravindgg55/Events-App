@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 public class Event extends Activity {
 
     public static final String TEAM_COUNT = "TEAM_COUNT";
-    public static final int MAX_UPLOAD_COUNT = 2;
+    public static final int MAX_UPLOAD_COUNT = 4;
     int teamCount =0;
     ArrayList<Team> teamList;
     Team team;
@@ -30,7 +31,8 @@ public class Event extends Activity {
 
     Intent intent;
     String event_name;
-
+    ListView listView;
+    ArrayAdapter<Team> adapter;
     Button fileButton;
     String restored_event_name;
     int memberCount;
@@ -91,6 +93,10 @@ public class Event extends Activity {
 
         fileButton =  (Button) findViewById(R.id.button_scan);
 
+        listView = (ListView) findViewById(R.id.teamList);
+        adapter = new ArrayAdapter<Team>(this,
+               android.R.layout.simple_list_item_1,teamList);
+        listView.setAdapter(adapter);
     }
 
     @Override
@@ -108,11 +114,13 @@ public class Event extends Activity {
                 team.participants = (ArrayList<String>) collected_data.clone();
                 String finalStr = "";
                 for(int i=0;i<memberCount;i++) {
-                    finalStr = finalStr + collected_data.get(i) + "\n";
+                    finalStr = finalStr + team.participants.get(i) + "\n";
                 }
                 teamCount++;
                 Toast.makeText(getApplicationContext(),""+"Team "+teamCount+"\n"+finalStr, Toast.LENGTH_SHORT).show();
                 teamList.add(team);
+                listView.setAdapter(adapter);
+
                 if(teamCount == MAX_UPLOAD_COUNT){
                     upload();
                 }
