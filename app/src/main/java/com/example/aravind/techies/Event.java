@@ -27,6 +27,7 @@ public class Event extends Activity {
     TextView textView_counts;
     Button button;
     Button upload;
+
     Intent intent;
     String event_name;
 
