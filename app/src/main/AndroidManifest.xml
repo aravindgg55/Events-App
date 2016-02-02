@@ -21,7 +21,7 @@
         <activity android:name=".Event"
                 />
         <activity android:name=".Scanner"
-            android:noHistory="true"/>
+            />
 
         <service
             android:name=".UploadService"

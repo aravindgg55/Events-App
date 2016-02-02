@@ -30,7 +30,7 @@ public class Scanner extends Activity implements ZXingScannerView.ResultHandler{
     TextView textView;
     TextView textView_counter;
     LinearLayout linearLayout;
-     Integer numbers=0;
+    Integer numbers=0;
 
 
     public static final int codeLen = 8;
@@ -94,6 +94,7 @@ public class Scanner extends Activity implements ZXingScannerView.ResultHandler{
                 if (numbers != count)
                     z.resumeCameraPreview(this);
                 else {
+                    z.stopCamera();
                     Intent resultIntent = new Intent();
                     resultIntent.putCharSequenceArrayListExtra(RESULT_CODES, collected_data);
                     setResult(45, resultIntent);
@@ -121,8 +122,7 @@ public class Scanner extends Activity implements ZXingScannerView.ResultHandler{
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Intent intent=new Intent();
-                Toast.makeText(getApplicationContext(),"Aborted",Toast.LENGTH_SHORT).show();
-                setResult(90,intent);
+                setResult(45,intent);
                 finish();
             }
         })

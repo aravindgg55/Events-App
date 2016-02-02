@@ -57,9 +57,7 @@ ADDED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\A
 	android:name
 		ADDED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\AndroidManifest.xml:21:19-40
 activity#com.example.aravind.techies.Scanner
-ADDED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\AndroidManifest.xml:23:9-24:39
-	android:noHistory
-		ADDED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\AndroidManifest.xml:24:13-37
+ADDED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\AndroidManifest.xml:23:9-24:15
 	android:name
 		ADDED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\AndroidManifest.xml:23:19-42
 service#com.example.aravind.techies.UploadService

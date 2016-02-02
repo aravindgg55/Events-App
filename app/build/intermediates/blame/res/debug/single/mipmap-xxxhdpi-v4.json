@@ -1,9 +1,5 @@
 [
     {
-        "merged": "C:\\Users\\aravind\\AndroidStudioProjects\\Techies\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi-v4\\ic_launcher.png",
-        "source": "C:\\Users\\aravind\\AndroidStudioProjects\\Techies\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
-    },
-    {
         "merged": "C:\\Users\\AkilAdeshwar\\AndroidStudioProjects\\Events-App\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi-v4\\ic_launcher.png",
         "source": "C:\\Users\\AkilAdeshwar\\AndroidStudioProjects\\Events-App\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
     }
