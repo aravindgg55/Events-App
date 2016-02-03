@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Techies</string>
+    <string name="title_activity_display">Display</string>
 </resources>

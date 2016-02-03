@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,10 +16,20 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Event extends Activity {
 
+    public static final String FILE_CHECK = "FILE_CHECK";
     public static final String TEAM_COUNT = "TEAM_COUNT";
     public static final int MAX_UPLOAD_COUNT = 2;
     public static int teamCount =0;
@@ -32,6 +43,7 @@ public class Event extends Activity {
     Button button;
     Button upload;
 
+    String filePath = Environment.getExternalStorageDirectory().getAbsolutePath();
     Intent intent;
     String event_name;
     ListView listView;
@@ -42,7 +54,7 @@ public class Event extends Activity {
     public static String pref_event="key";
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedPreferences;
-
+    public  static String filename="Hepthalon.json";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,9 +93,8 @@ public class Event extends Activity {
 
                 if( teamCount == MAX_UPLOAD_COUNT){
                     Toast.makeText(Event.this,"Maximum LIMIT reached",Toast.LENGTH_SHORT).show();
-                    // reinitialise teamcount and teamlist
-                    teamList.clear();
-                    adapter.notifyDataSetChanged();
+
+
                     teamCount=0;
                     return;
                 }
@@ -169,8 +180,89 @@ public class Event extends Activity {
 
     public void storeToFile(View view){
 
+//        Toast.makeText(this,filePath,Toast.LENGTH_SHORT).show();
 
-        Toast.makeText(this,Utility.generateJSON(teamList),Toast.LENGTH_SHORT).show();
+
+        String json="",oldJson="";
+        if(!teamList.isEmpty())
+            json = Utility.generateJSON(teamList) ;
+        else{
+            Toast.makeText(this,"Team List is empty!",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+
+        sharedPreferences=getSharedPreferences(MyPREFERENCES, MODE_PRIVATE);
+        if(sharedPreferences.getBoolean(FILE_CHECK,false)) {
+
+
+            InputStream in;
+            File inFile = new File(filePath, filename);
+            try{
+
+                String line;
+                in = new FileInputStream(inFile);
+                StringBuffer sb = new StringBuffer("");
+                BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+                while((line = reader.readLine())!=null){
+                    sb.append(line);
+                }
+                oldJson = sb.toString();
+                in.close();
+               // Toast.makeText(this,oldJson,Toast.LENGTH_SHORT).show();
+
+
+                JSONObject jsonObject = new JSONObject(oldJson);
+                JSONArray jsonArray = jsonObject.getJSONArray("teams");
+                //Toast.makeText(this,jsonArray.toString(),Toast.LENGTH_SHORT).show();
+                jsonObject.remove("teams");
+                //Toast.makeText(this,jsonObject.toString(),Toast.LENGTH_SHORT).show();
+                int i=0;
+                for(i=0;i<teamList.size();i++){
+                    JSONObject team  = new JSONObject(Utility.generateTeamJson(teamList.get(i),"0"));
+                    jsonArray.put(team);
+                }
+                jsonObject.put("teams", jsonArray);
+                json = jsonObject.toString();
+
+
+            }
+            catch(Exception e) {
+
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+        // Handle empty list
+
+        Toast.makeText(this,json,Toast.LENGTH_SHORT).show();
+        FileOutputStream out;
+        File outFile = new File(filePath , filename);
+        try {
+            out = new FileOutputStream(outFile);
+            out.write(json.getBytes());
+            out.close();
+        }
+        catch (Exception e){
+
+
+        }
+        final SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.putBoolean(FILE_CHECK,true);
+        editor.commit();
+
+        teamList.clear();
+        adapter.notifyDataSetChanged();
+        teamCount=0;
 
     }
 

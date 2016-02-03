@@ -1,6 +1,10 @@
 [
     {
-        "merged": "C:\\Users\\AkilAdeshwar\\AndroidStudioProjects\\Events-App\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\ic_launcher.png",
-        "source": "C:\\Users\\AkilAdeshwar\\AndroidStudioProjects\\Events-App\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+        "merged": "/Users/aravind/Downloads/Events-App/app/build/intermediates/res/merged/debug/mipmap-hdpi-v4/ic_launcher.png",
+        "source": "/Users/aravind/Downloads/Events-App/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/aravind/Downloads/Events-App/C:\\Users\\AkilAdeshwar\\AndroidStudioProjects\\Events-App\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\ic_launcher.png",
+        "source": "/Users/aravind/Downloads/Events-App/C:\\Users\\AkilAdeshwar\\AndroidStudioProjects\\Events-App\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
     }
 ]
