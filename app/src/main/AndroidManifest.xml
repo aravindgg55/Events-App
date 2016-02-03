@@ -19,8 +19,10 @@
         </activity>
         <activity android:name=".Selected_item" />
         <activity android:name=".Event"
+            android:screenOrientation="portrait"
                 />
         <activity android:name=".Scanner"
+            android:screenOrientation="portrait"
             android:noHistory="true"
             />
 

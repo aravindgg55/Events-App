@@ -1,10 +1,13 @@
 package com.example.aravind.techies;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -17,9 +20,9 @@ import java.util.ArrayList;
 public class Event extends Activity {
 
     public static final String TEAM_COUNT = "TEAM_COUNT";
-    public static final int MAX_UPLOAD_COUNT = 4;
-    int teamCount =0;
-    ArrayList<Team> teamList;
+    public static final int MAX_UPLOAD_COUNT = 2;
+    public static int teamCount =0;
+    public static ArrayList<Team> teamList;
     Team team;
     Spinner spinner;
     ArrayAdapter<String> spinner_adapter;
@@ -80,6 +83,7 @@ public class Event extends Activity {
                     Toast.makeText(Event.this,"Maximum LIMIT reached",Toast.LENGTH_SHORT).show();
                     // reinitialise teamcount and teamlist
                     teamList.clear();
+                    adapter.notifyDataSetChanged();
                     teamCount=0;
                     return;
                 }
@@ -97,6 +101,31 @@ public class Event extends Activity {
         adapter = new ArrayAdapter<Team>(this,
                android.R.layout.simple_list_item_1,teamList);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick( AdapterView<?> parent, View view, final int position, long id) {
+
+                AlertDialog.Builder alertDialgBuilder=new AlertDialog.Builder(Event.this);
+                alertDialgBuilder.setTitle("Do you want to remove this team?");
+                alertDialgBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        teamList.remove(position);
+                        teamCount--;
+                        adapter.notifyDataSetChanged();
+                    }
+                })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                return;
+                            }
+                        });
+                AlertDialog alertDialog=alertDialgBuilder.create();
+                alertDialog.show();
+
+            }
+        });
     }
 
     @Override

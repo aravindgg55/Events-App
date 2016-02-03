@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\AndroidManifest.xml:2:1-33:12
+ADDED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\AndroidManifest.xml:2:1-35:12
 	package
 		ADDED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\AndroidManifest.xml:3:5-42
 		INJECTED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\AndroidManifest.xml
@@ -18,7 +18,7 @@ ADDED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\A
 	android:name
 		ADDED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\AndroidManifest.xml:5:22-62
 application
-ADDED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\AndroidManifest.xml:7:5-31:19
+ADDED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\AndroidManifest.xml:7:5-33:19
 MERGED from [com.android.support:appcompat-v7:23.1.1] C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:23.1.1] C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\AndroidManifest.xml:22:5-20
 MERGED from [me.dm7.barcodescanner:zxing:1.8.4] C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\build\intermediates\exploded-aar\me.dm7.barcodescanner\zxing\1.8.4\AndroidManifest.xml:11:5-20
@@ -53,21 +53,25 @@ ADDED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\A
 	android:name
 		ADDED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\AndroidManifest.xml:20:19-48
 activity#com.example.aravind.techies.Event
-ADDED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\AndroidManifest.xml:21:9-22:19
+ADDED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\AndroidManifest.xml:21:9-23:19
+	android:screenOrientation
+		ADDED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\AndroidManifest.xml:22:13-49
 	android:name
 		ADDED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\AndroidManifest.xml:21:19-40
 activity#com.example.aravind.techies.Scanner
-ADDED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\AndroidManifest.xml:23:9-25:15
+ADDED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\AndroidManifest.xml:24:9-27:15
+	android:screenOrientation
+		ADDED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\AndroidManifest.xml:25:13-49
 	android:noHistory
-		ADDED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\AndroidManifest.xml:24:13-37
+		ADDED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\AndroidManifest.xml:26:13-37
 	android:name
-		ADDED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\AndroidManifest.xml:23:19-42
+		ADDED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\AndroidManifest.xml:24:19-42
 service#com.example.aravind.techies.UploadService
-ADDED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\AndroidManifest.xml:27:9-29:48
+ADDED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\AndroidManifest.xml:29:9-31:48
 	android:exported
-		ADDED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\AndroidManifest.xml:29:13-37
+		ADDED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\AndroidManifest.xml:31:13-37
 	android:name
-		ADDED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\AndroidManifest.xml:28:13-42
+		ADDED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\AndroidManifest.xml:30:13-42
 uses-sdk
 INJECTED from C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:appcompat-v7:23.1.1] C:\Users\AkilAdeshwar\AndroidStudioProjects\Events-App\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\AndroidManifest.xml:20:5-43
