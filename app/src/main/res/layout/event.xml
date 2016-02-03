@@ -19,9 +19,9 @@
         android:layout_height="wrap_content"
         android:text="Scan"
         android:id="@+id/button_scan"
-        android:layout_marginBottom="112dp"
+        android:layout_marginBottom="45dp"
         android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/textView" />
+        android:layout_alignParentEnd="true" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -30,8 +30,7 @@
         android:text="UPLOAD   "
         android:id="@+id/button_upload"
         android:layout_alignTop="@+id/button_scan"
-        android:layout_alignEnd="@+id/button_scan"
-        android:layout_marginTop="55dp" />
+        android:layout_toStartOf="@+id/button_scan" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -48,7 +47,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/spinner"
         android:spinnerMode="dropdown"
-        android:layout_alignTop="@+id/button_scan"
+        android:layout_alignBottom="@+id/button_upload"
         android:layout_toStartOf="@+id/codes_count" />
 
     <Button
@@ -56,8 +55,16 @@
         android:layout_height="wrap_content"
         android:text="store to file"
         android:id="@+id/button_store"
-        android:layout_above="@+id/button_scan"
-        android:layout_alignEnd="@+id/button_scan"
         android:nestedScrollingEnabled="false"
-        android:onClick="storeToFile" />
+        android:onClick="storeToFile"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@+id/button_upload" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:id="@+id/teamList"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="48dp" />
 </RelativeLayout>

@@ -1,12 +1,16 @@
 package com.example.aravind.techies;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,8 +21,8 @@ public class Event extends Activity {
 
     public static final String TEAM_COUNT = "TEAM_COUNT";
     public static final int MAX_UPLOAD_COUNT = 2;
-    int teamCount =0;
-    ArrayList<Team> teamList;
+    public static int teamCount =0;
+    public static ArrayList<Team> teamList;
     Team team;
     Spinner spinner;
     ArrayAdapter<String> spinner_adapter;
@@ -30,7 +34,8 @@ public class Event extends Activity {
 
     Intent intent;
     String event_name;
-
+    ListView listView;
+    ArrayAdapter<Team> adapter;
     Button fileButton;
     String restored_event_name;
     int memberCount;
@@ -78,6 +83,7 @@ public class Event extends Activity {
                     Toast.makeText(Event.this,"Maximum LIMIT reached",Toast.LENGTH_SHORT).show();
                     // reinitialise teamcount and teamlist
                     teamList.clear();
+                    adapter.notifyDataSetChanged();
                     teamCount=0;
                     return;
                 }
@@ -91,6 +97,35 @@ public class Event extends Activity {
 
         fileButton =  (Button) findViewById(R.id.button_scan);
 
+        listView = (ListView) findViewById(R.id.teamList);
+        adapter = new ArrayAdapter<Team>(this,
+               android.R.layout.simple_list_item_1,teamList);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick( AdapterView<?> parent, View view, final int position, long id) {
+
+                AlertDialog.Builder alertDialgBuilder=new AlertDialog.Builder(Event.this);
+                alertDialgBuilder.setTitle("Do you want to remove this team?");
+                alertDialgBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        teamList.remove(position);
+                        teamCount--;
+                        adapter.notifyDataSetChanged();
+                    }
+                })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                return;
+                            }
+                        });
+                AlertDialog alertDialog=alertDialgBuilder.create();
+                alertDialog.show();
+
+            }
+        });
     }
 
     @Override
@@ -99,6 +134,8 @@ public class Event extends Activity {
         switch(requestCode){
 
             case 45:
+                if(data == null)
+                    return;
                 ArrayList<CharSequence> collected_data = data.getCharSequenceArrayListExtra(Scanner.RESULT_CODES);
                 if(collected_data==null) {
                     Toast.makeText(this,"Aborted",Toast.LENGTH_SHORT).show();
@@ -108,11 +145,13 @@ public class Event extends Activity {
                 team.participants = (ArrayList<String>) collected_data.clone();
                 String finalStr = "";
                 for(int i=0;i<memberCount;i++) {
-                    finalStr = finalStr + collected_data.get(i) + "\n";
+                    finalStr = finalStr + team.participants.get(i) + "\n";
                 }
                 teamCount++;
                 Toast.makeText(getApplicationContext(),""+"Team "+teamCount+"\n"+finalStr, Toast.LENGTH_SHORT).show();
                 teamList.add(team);
+                listView.setAdapter(adapter);
+
                 if(teamCount == MAX_UPLOAD_COUNT){
                     upload();
                 }
@@ -130,7 +169,8 @@ public class Event extends Activity {
 
     public void storeToFile(View view){
 
-        Toast.makeText(this,"Done",Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(this,Utility.generateJSON(teamList),Toast.LENGTH_SHORT).show();
 
     }
 

@@ -1,8 +1,5 @@
 package com.example.aravind.techies;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -21,6 +18,17 @@ public class Team implements Serializable{
     public Team(int posSet){
         super();
         this.position = posSet;
+    }
+
+    @Override
+    public String toString() {
+        StringBuffer stringBuffer = new StringBuffer("");
+        int i=0;
+        stringBuffer.append("Team Count: "+participants.size()+"\n");
+        for(i=0;i<participants.size();i++){
+            stringBuffer.append((i+1)+" - "+participants.get(i)+".\n");
+        }
+        return stringBuffer.toString();
     }
 
 }
