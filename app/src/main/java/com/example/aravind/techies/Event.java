@@ -134,6 +134,8 @@ public class Event extends Activity {
         switch(requestCode){
 
             case 45:
+                if(data == null)
+                    return;
                 ArrayList<CharSequence> collected_data = data.getCharSequenceArrayListExtra(Scanner.RESULT_CODES);
                 if(collected_data==null) {
                     Toast.makeText(this,"Aborted",Toast.LENGTH_SHORT).show();
@@ -167,7 +169,8 @@ public class Event extends Activity {
 
     public void storeToFile(View view){
 
-        Toast.makeText(this,"Done",Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(this,Utility.generateJSON(teamList),Toast.LENGTH_SHORT).show();
 
     }
 
