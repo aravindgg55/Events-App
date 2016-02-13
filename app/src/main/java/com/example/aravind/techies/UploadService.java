@@ -14,10 +14,6 @@ public class UploadService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         if (intent != null) {
 
-
-
         }
     }
-
-
 }

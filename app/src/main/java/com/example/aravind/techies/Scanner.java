@@ -43,6 +43,7 @@ public class Scanner extends Activity implements ZXingScannerView.ResultHandler{
         super.onCreate(savedInstanceState);
         intent = getIntent();
         count  = intent.getIntExtra(Event.TEAM_COUNT, 0);
+
         setContentView(R.layout.scan);
         z=new ZXingScannerView(this);
         linearLayout=(LinearLayout)findViewById(R.id.lv);

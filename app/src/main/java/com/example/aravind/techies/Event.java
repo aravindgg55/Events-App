@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,27 +19,38 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 public class Event extends Activity {
 
     public static final String FILE_CHECK = "FILE_CHECK";
     public static final String TEAM_COUNT = "TEAM_COUNT";
-    public static final int MAX_UPLOAD_COUNT = 2;
+    public static final String LEVEL = "LEVEL";
+
+    public static final int MAX_UPLOAD_COUNT = 10;
     public static int teamCount =0;
     public static ArrayList<Team> teamList;
     Team team;
-    Spinner spinner;
-    ArrayAdapter<String> spinner_adapter;
-    String [] spinner_values;
+    Spinner spinner,level_spinner;
+    ArrayAdapter<String> spinner_adapter,level_spinner_adapter;
+    String [] spinner_values,level_spinner_values;
     TextView textView;
     TextView textView_counts;
     Button button;
@@ -50,11 +63,12 @@ public class Event extends Activity {
     ArrayAdapter<Team> adapter;
     Button fileButton;
     String restored_event_name;
+    String event;
     int memberCount;
     public static String pref_event="key";
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedPreferences;
-    public  static String filename="Hepthalon.json";
+    public  static String filename;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,12 +76,19 @@ public class Event extends Activity {
         sharedPreferences=getSharedPreferences(MyPREFERENCES, MODE_PRIVATE);
         final SharedPreferences.Editor editor=sharedPreferences.edit();
         editor.commit();
-
+        event = getIntent().getStringExtra("key-2");
         spinner_values=getResources().getStringArray(R.array.spinner_val);
         spinner=(Spinner)findViewById(R.id.spinner);
         spinner_adapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,spinner_values);
+
         spinner_adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinner.setAdapter(spinner_adapter);
+
+        level_spinner_values=getResources().getStringArray(R.array.level_spinner_val);
+        level_spinner=(Spinner)findViewById(R.id.level_spinner);
+        spinner_adapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,level_spinner_values);
+        spinner_adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        level_spinner.setAdapter(spinner_adapter);
 
         teamList = new ArrayList<>();
         upload = (Button) findViewById(R.id.button_upload);
@@ -75,9 +96,26 @@ public class Event extends Activity {
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    // Add upload code here.
+                if(teamList.size() ==0){
+                    filename = event_name+"-"+level_spinner.getSelectedItem().toString()+".txt";
+                    if(sharedPreferences.getBoolean(filename,false)) {
+                        PostScanned p = new PostScanned();
+                        String json = getJSONFromFile();
+                        if (json != null) {
+                            p.execute(json);
+                        } else {
+                            Toast.makeText(Event.this, "File not found, Please write to file", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    else {
+                        Toast.makeText(Event.this, "No file to upload", Toast.LENGTH_LONG).show();
+                    }
+                }else {
+                    Toast.makeText(Event.this,"Please write to file before upload",Toast.LENGTH_LONG).show();
+                }
             }
         });
+
         textView=(TextView)findViewById(R.id.textView);
         textView_counts=(TextView)findViewById(R.id.codes_count);
         intent=getIntent();
@@ -90,17 +128,16 @@ public class Event extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if( teamCount == MAX_UPLOAD_COUNT){
                     Toast.makeText(Event.this,"Maximum LIMIT reached",Toast.LENGTH_SHORT).show();
-
-
                     teamCount=0;
                     return;
                 }
+
                 memberCount = Integer.parseInt(spinner.getSelectedItem().toString());
                 intent=new Intent(getApplicationContext(),Scanner.class);
                 intent.putExtra(TEAM_COUNT,memberCount);
+                intent.putExtra(LEVEL,spinner.getSelectedItem().toString());
                 startActivityForResult(intent,45);
             }
         });
@@ -139,6 +176,28 @@ public class Event extends Activity {
         });
     }
 
+    private String getJSONFromFile() {
+        File inFile = new File(filePath, filename);
+        InputStream in;
+            String line;
+        try {
+            in = new FileInputStream(inFile);
+            StringBuffer sb = new StringBuffer("");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+                while((line = reader.readLine())!=null){
+                    sb.append(line);
+                }
+            in.close();
+            return sb.toString();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }  catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -172,9 +231,7 @@ public class Event extends Activity {
     }
 
     public void upload(){
-
         Toast.makeText(Event.this, "Maximum Reached", Toast.LENGTH_SHORT).show();
-
     }
 
 
@@ -183,19 +240,18 @@ public class Event extends Activity {
 //        Toast.makeText(this,filePath,Toast.LENGTH_SHORT).show();
 
 
-        String json="",oldJson="";
+        String json="",oldJson="",level=level_spinner.getSelectedItem().toString();
+        filename = event_name+"-"+level+".txt";
         if(!teamList.isEmpty())
-            json = Utility.generateJSON(teamList) ;
+            json = Utility.generateJSON(teamList,level,event_name) ;
         else{
             Toast.makeText(this,"Team List is empty!",Toast.LENGTH_SHORT).show();
             return;
         }
 
 
-
         sharedPreferences=getSharedPreferences(MyPREFERENCES, MODE_PRIVATE);
-        if(sharedPreferences.getBoolean(FILE_CHECK,false)) {
-
+        if(sharedPreferences.getBoolean(filename,false)) {
 
             InputStream in;
             File inFile = new File(filePath, filename);
@@ -226,22 +282,18 @@ public class Event extends Activity {
                 jsonObject.put("teams", jsonArray);
                 json = jsonObject.toString();
 
-
-            }
-            catch(Exception e) {
-
+            } catch (FileNotFoundException e) {
+                final SharedPreferences.Editor editor=sharedPreferences.edit();
+                editor.putBoolean(filename,false);
+                editor.commit();
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
 
         }
-
-
-
-
-
-
-
-
-
         // Handle empty list
 
         Toast.makeText(this,json,Toast.LENGTH_SHORT).show();
@@ -254,10 +306,10 @@ public class Event extends Activity {
         }
         catch (Exception e){
 
-
         }
+
         final SharedPreferences.Editor editor=sharedPreferences.edit();
-        editor.putBoolean(FILE_CHECK,true);
+        editor.putBoolean(filename,true);
         editor.commit();
 
         teamList.clear();
@@ -266,4 +318,54 @@ public class Event extends Activity {
 
     }
 
+    class PostScanned extends AsyncTask<String,Void,String>
+    {
+
+        @Override
+        protected String doInBackground(String... params) {
+            String uss=params[0];
+            String link="http://techteam.kurukshetra.org.in/app_scripts/upload_result.php";
+            String data;
+            try {
+                data = URLEncoder.encode("json", "UTF-8") + "=" + URLEncoder.encode(uss, "UTF-8");
+                URL url = new URL(link);
+                URLConnection conn = url.openConnection();
+                conn.setDoOutput(true);
+                OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+
+                wr.write( data );
+                wr.flush();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+                StringBuilder sb = new StringBuilder();
+                String line = null;
+
+                // Read Server Response
+                while((line = reader.readLine()) != null)
+                {
+                    sb.append(line);
+                    break;
+                }
+                Log.d("Yeah:", sb.toString());
+                return "success";
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return "";
+        }
+
+
+        protected void onPostExecute(String r){
+            if(r.equals("success")) {
+                Toast.makeText(getApplicationContext(), "Uploaded", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Toast.makeText(getApplicationContext(), "Unable to upload, Check your internet connection.", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 }
