@@ -19,8 +19,7 @@
         android:layout_height="wrap_content"
         android:text="Scan"
         android:id="@+id/button_scan"
-        android:layout_marginBottom="45dp"
-        android:layout_alignParentBottom="true"
+        android:layout_alignTop="@+id/spinner"
         android:layout_alignParentEnd="true" />
 
     <Button
@@ -29,8 +28,8 @@
         android:layout_height="wrap_content"
         android:text="UPLOAD   "
         android:id="@+id/button_upload"
-        android:layout_alignTop="@+id/button_scan"
-        android:layout_toStartOf="@+id/button_scan" />
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/textView" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -43,12 +42,20 @@
         android:layout_centerHorizontal="true" />
 
     <Spinner
-        android:layout_width="150dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:id="@+id/spinner"
         android:spinnerMode="dropdown"
-        android:layout_alignBottom="@+id/button_upload"
-        android:layout_toStartOf="@+id/codes_count" />
+        android:layout_above="@+id/level_spinner"
+        android:layout_alignStart="@+id/level_spinner" />
+
+    <Spinner
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/level_spinner"
+        android:spinnerMode="dropdown"
+        android:layout_above="@+id/button_upload"
+        android:layout_alignStart="@+id/textView" />
 
     <Button
         android:layout_width="wrap_content"
@@ -58,13 +65,31 @@
         android:nestedScrollingEnabled="false"
         android:onClick="storeToFile"
         android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/button_upload" />
+        android:layout_toStartOf="@+id/codes_count" />
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:id="@+id/teamList"
         android:layout_below="@+id/textView"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="48dp" />
+        android:layout_alignEnd="@+id/button_scan"
+        android:layout_above="@+id/button_scan" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No of team members"
+        android:id="@+id/textView2"
+        android:layout_alignBottom="@+id/button_scan"
+        android:layout_toStartOf="@+id/level_spinner" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Round number"
+        android:layout_marginTop="20dp"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/spinner"
+        android:layout_alignStart="@+id/button_store" />
+
 </RelativeLayout>

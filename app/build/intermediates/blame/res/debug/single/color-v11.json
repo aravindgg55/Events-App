@@ -1,18 +1,10 @@
 [
     {
-        "merged": "/Users/aravind/Downloads/Events-App/app/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_light.xml",
-        "source": "/Users/aravind/Downloads/Events-App/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/color-v11/abc_background_cache_hint_selector_material_light.xml"
+        "merged": "/home/baratheraja/web/Events-App/app/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_dark.xml",
+        "source": "/home/baratheraja/web/Events-App/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/color-v11/abc_background_cache_hint_selector_material_dark.xml"
     },
     {
-        "merged": "/Users/aravind/Downloads/Events-App/app/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_dark.xml",
-        "source": "/Users/aravind/Downloads/Events-App/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/color-v11/abc_background_cache_hint_selector_material_dark.xml"
-    },
-    {
-        "merged": "/Users/aravind/Downloads/Events-App/C:\\Users\\AkilAdeshwar\\AndroidStudioProjects\\Events-App\\app\\build\\intermediates\\res\\merged\\debug\\color-v11\\abc_background_cache_hint_selector_material_dark.xml",
-        "source": "/Users/aravind/Downloads/Events-App/C:\\Users\\AkilAdeshwar\\AndroidStudioProjects\\Events-App\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\color-v11\\abc_background_cache_hint_selector_material_dark.xml"
-    },
-    {
-        "merged": "/Users/aravind/Downloads/Events-App/C:\\Users\\AkilAdeshwar\\AndroidStudioProjects\\Events-App\\app\\build\\intermediates\\res\\merged\\debug\\color-v11\\abc_background_cache_hint_selector_material_light.xml",
-        "source": "/Users/aravind/Downloads/Events-App/C:\\Users\\AkilAdeshwar\\AndroidStudioProjects\\Events-App\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\color-v11\\abc_background_cache_hint_selector_material_light.xml"
+        "merged": "/home/baratheraja/web/Events-App/app/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_light.xml",
+        "source": "/home/baratheraja/web/Events-App/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/color-v11/abc_background_cache_hint_selector_material_light.xml"
     }
 ]
